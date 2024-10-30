@@ -1,0 +1,35 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+{% block title %}Top 100 Criptovalute{% endblock %}
+{% block content %}
+<h1>Top 100 Criptovalute</h1>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Logo</th>
+        <th>Nome</th>
+        <th>Prezzo</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for coin in coins %}
+      <tr>
+        <td><img src="{{ coin.image }}" alt="{{ coin.name }}" width="30"></td>
+        <td>{{ coin.name }} ({{ coin.symbol.upper() }})</td>
+        <td>${{ "{:,.2f}".format(coin.current_price) }}</td>
+        <td>
+          {% if current_user.is_authenticated %}
+            <a href="{{ url_for('add_to_watchlist', coin_id=coin.id) }}" class="btn btn-sm btn-primary">Aggiungi alla Watchlist</a>
+          {% else %}
+            <a href="{{ url_for('login') }}" class="btn btn-sm btn-secondary">Accedi per aggiungere</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<button id="toggle-theme" class="btn btn-secondary">Modalità Notte</button>
+{% endblock %}

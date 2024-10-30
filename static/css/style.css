@@ -1,0 +1,24 @@
+/* static/css/style.css */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --table-row-bg: #f9f9f9;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+}
+
+body.dark-mode {
+  --table-row-bg: #1e1e1e;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: var(--table-row-bg);
+}
